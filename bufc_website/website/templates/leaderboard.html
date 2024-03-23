@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #051937 0%, #004d7a 100%);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        table {
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+        }
+        table th, table td {
+            padding: 8px;
+        }
+        .medal {
+            width: 20px; /* Adjust size as needed */
+            height: auto;
+            vertical-align: middle; /* Align icons vertically with text */
+            margin-right: 5px; /* Add some space between icon and text */
+        }
+    </style>
+</head>
+<body>
+    <h1>Leaderboard</h1>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Student</th>
+            <th>Points</th>
+        </tr>
+        {% for index, student in enumerate(leaderboard) %}
+        <tr>
+            <td>
+                {% if index == 0 %}
+                    🥇 <!-- Gold Medal Emoji -->
+                {% elif index == 1 %}
+                    🥈 <!-- Silver Medal Emoji -->
+                {% elif index == 2 %}
+                    🥉 <!-- Bronze Medal Emoji -->
+                {% endif %}
+                {{ index + 1 }}
+            </td>
+            <td>
+                {% if index < 3 %}
+                    <span class="medal">
+                        {% if index == 0 %}
+                            🥇 <!-- Gold Medal Emoji -->
+                        {% elif index == 1 %}
+                            🥈 <!-- Silver Medal Emoji -->
+                        {% elif index == 2 %}
+                            🥉 <!-- Bronze Medal Emoji -->
+                        {% endif %}
+                    </span>
+                {% endif %}
+                {{ student.name }}
+            </td>
+            <td>{{ student.points }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

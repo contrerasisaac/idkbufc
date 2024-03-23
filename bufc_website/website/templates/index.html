@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BELLARMINE UFC</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #051937 0%, #004d7a 100%);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .title-container {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: white;
+            text-shadow: 2px 2px black;
+            display: inline-block;
+        }
+        h1, #subheader {
+            margin: 0;
+            color: black; /* Adjust text color of the title */
+            display: inline; /* Display subheader inline */
+            vertical-align: middle; /* Align subheader vertically with title */
+        }
+        .header-trophy {
+            font-size: 24px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: -30px;
+            transform: translateY(-50%);
+        }
+        #subheader {
+            font-size: smaller;
+        }
+        #voting-program {
+            margin-top: 50px;
+        }
+        #voting-program h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .student-container {
+            display: inline-block;
+            margin: 20px;
+            text-align: center;
+        }
+        .student-container img {
+            width: 200px;
+            height: auto;
+        }
+        .student-container .choose-button {
+            display: block;
+            margin-top: 10px;
+        }
+        #leaderboard {
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            display: inline-block;
+            text-align: left;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+        }
+        #leaderboard table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        #leaderboard table th, #leaderboard table td {
+            border: 1px solid white;
+            padding: 8px;
+        }
+        #leaderboard table th {
+            background-color: black;
+            color: white;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-container">
+        <h1>BELLARMINE UFC</h1>
+        <div id="subheader">Created by Isaac Contreras '24 :)</div>
+        <div class="header-trophy">&#127942;</div>
+    </div>
+    <div id="voting-program">
+        <h2>WHO WOULD WIN IN A UFC MATCH?</h2>
+        <form action="/vote" method="POST">
+            <div class="student-container">
+                <img src="{{ url_for('static', filename='Screenshots/' + student1.name + '.png') }}" alt="{{ student1.name }}">
+                <input type="submit" class="choose-button" name="student" value="{{ student1.name }}">
+            </div>
+            <div class="student-container">
+                <img src="{{ url_for('static', filename='Screenshots/' + student2.name + '.png') }}" alt="{{ student2.name }}">
+                <input type="submit" class="choose-button" name="student" value="{{ student2.name }}">
+            </div>
+        </form>
+    </div>
+    <div id="leaderboard">
+        <h2>Leaderboard</h2>
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Senior</th>
+            </tr>
+            {% for student in leaderboard %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ student.name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <footer>
+            <p>*DISCLAIMER: THIS WEBSITE IS INTENDED FOR RESEARCH PURPOSES ONLY! THIS WEBSITE IS NOT ASSOCIATED 
+                IN ANY WAY, SHAPE, OR FORM WITH BELLARMINE COLLEGE PREPARATORY. 
+                THIS WEBSITE'S ONLY INTENDED PURPOSE IS FOR LIGHT-HEARTED ENTERTAINMENT FOR THE SENIOR CLASS.
+                IF YOU HAVE ANY SUGGESTIONS FOR THIS WEBSITE, OR WANT TO SEE ANY CHANGES, ADD @contrerasisaac ON INSTAGRAM. </p>
+        </footer>
+    </body>
+</html>
